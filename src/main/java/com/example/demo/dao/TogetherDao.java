@@ -24,4 +24,6 @@ public class TogetherDao {
 	public int deleteTogether(TogetherVo t) {
 		return TogetherManager.deleteTogether(t);
 	}
+	
+	//수인 입장
 }
