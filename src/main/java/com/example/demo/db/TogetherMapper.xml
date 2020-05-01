@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="together">
+
+  <select id="selectAll" resultType="togetherVo">
+    select * from together
+  </select>
+  
+  <insert id="insertTogether">
+  	insert into together values(#{t_num},#{t_title},#{t_intro},#{t_detail},sysdate,#{t_img},#{t_place},#{t_date},10,5,'안녕','네',#{t_fname},'wonwoo',0)
+  </insert>
+  
+  <update id="updateTogether">
+  	update together set t_board_title=#{t_board_title},t_board_content=#{t_board_content},sysdate, t_board_hit=0 where t_board_no=#{t_board_no} 
+  </update>
+  
+  <delete id="deleteTogether">
+  	delete from together where t_board_no =1
+  </delete>
+</mapper>
