@@ -9,6 +9,13 @@
 </head>
 <body>
 	<h2>함께가요</h2>
+	<form action="listTogether.do" method="post">
+		<select name="searchColumn">
+			<option value="t_place">주소</option>
+		</select>: <input type="text" value="keyword">
+		<input type="submit" value="검색">
+	</form>
+	<br>
 	<table border="1" width="80%">
 		<tr>
 			<td>썸네일</td>
@@ -17,6 +24,7 @@
 			<td>아이디</td>
 			<td>총참가인원</td>
 			<td>현재참가인원</td>
+			<td><a href="listTogether.do?sortColumn=t_place">모임장소</a></td>
 		</tr>
 		<c:forEach var="c" items="${list}">
 			<tr>
@@ -26,6 +34,7 @@
 				<td>${c.user_id}</td>
 				<td>${c.t_size}</td>
 				<td>${c.t_attendee_cnt}</td>	
+				<td>${c.t_place}</td>
 			</tr>
 		</c:forEach>
 		

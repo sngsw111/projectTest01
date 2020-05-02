@@ -17,10 +17,10 @@
   </insert>
   
   <update id="updateTogether">
-  	update together set t_board_title=#{t_board_title},t_board_content=#{t_board_content},sysdate, t_board_hit=0 where t_board_no=#{t_board_no} 
+  	update together set t_title=#{t_title},t_detail=#{t_detail},sysdate, t_hit=0 where t_num=#{t_num} 
   </update>
   
   <delete id="deleteTogether">
-  	delete from together where t_board_no =1
+  	delete from together where t_num =1
   </delete>
 </mapper>
