@@ -11,7 +11,7 @@ import com.example.demo.vo.TogetherVo;
 @Repository
 public class TogetherDao {
 	
-	public static int pageSize = 5;
+	public static int pageSize=5;
 	public static int totalRecord=0;
 	public static int totalPage=1;
 	

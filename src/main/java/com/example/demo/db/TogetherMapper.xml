@@ -14,11 +14,11 @@
     select t_num, t_title, t_intro, t_detail, t_open_date, t_thumbnail, t_place,
     		t_date, t_size, t_attendee_cnt, t_comment, t_comment_step, t_fname, user_id, t_hit from 
     	( select rownum r, t_num, t_title, t_intro, t_detail, t_open_date, t_thumbnail, t_place,
-    		t_date, t_size, t_attendee_cnt, t_comment, t_comment_step, t_fname, user_id, t_hit from (
-   	 		select * from together order by t_num desc )) 
+    		t_date, t_size, t_attendee_cnt, t_comment, t_comment_step, t_fname, user_id, t_hit from 
+    		( select * from together order by t_num desc )) 
    	 		where r between #{start} and #{end}
-   	 		<if test="keyword != null and keyword = ''">
-   	 			and ${searchColumn} like '%'|| #{keyword} ||'%' 
+   	 		<if test="keyword != null and keyword =''">
+   	 			and ${searchColumn} like '%' || #{keyword} || '%' 
    	 		</if>
    	 		<if test="sortColumn != null">
    	 			order by ${sortColumn}
@@ -34,7 +34,7 @@
   </insert>
   
   <update id="updateTogether">
-  	update together set t_title=#{t_title},t_detail=#{t_detail},sysdate, t_hit=0 where t_num=#{t_num} 
+  	update together set t_title=#{t_title},t_detail=#{t_detail}, sysdate, t_hit=0 where t_num=#{t_num} 
   </update>
   
   <delete id="deleteTogether">

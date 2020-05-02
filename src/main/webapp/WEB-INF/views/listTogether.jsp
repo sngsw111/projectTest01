@@ -45,7 +45,10 @@
 				<td>${c.t_hit}</td>	
 			</tr>
 		</c:forEach>
-		
+		<hr>
+		<c:forEach var="i" begin="1" end="${totalPage}">
+			<a href="listTogether.do?pageNum=${i }">${i }</a>&nbsp;&nbsp;
+		</c:forEach>
 		
 	</table>
 </body>
