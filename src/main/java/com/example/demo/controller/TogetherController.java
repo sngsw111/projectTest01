@@ -39,11 +39,15 @@ public class TogetherController {
 		
 		int re = dao.insertTogether(t);
 		if(re <= 0) {
-			msg = "게시물 등록이 실패하였습니다.";
+			msg = "게시물 등록에 실패하였습니다.";
 		}
 		return mav;
 	}
 	
+	 @RequestMapping(value="/main")
+	    public String main() {
+	        return "main";
+	    }
 	
 	
 	

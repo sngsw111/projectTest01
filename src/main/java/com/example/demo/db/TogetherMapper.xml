@@ -8,6 +8,10 @@
     select * from together
   </select>
   
+  <select id="detail" resultType="togetherVo">
+    select * from together where t_num=#{t_num}
+  </select>
+  
   <insert id="insertTogether">
   	insert into together values(#{t_num},#{t_title},#{t_intro},#{t_detail},sysdate,#{t_img},#{t_place},#{t_date},10,5,'안녕','네',#{t_fname},'wonwoo',0)
   </insert>
