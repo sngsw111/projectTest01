@@ -15,7 +15,7 @@ public class TogetherVo {
 	private String t_intro;
 	private String t_detail;
 	private Date t_open_date;
-	private String t_img;
+	private String t_thumbnail;
 	private String t_place;
 	private String t_date;
 	private int t_size;

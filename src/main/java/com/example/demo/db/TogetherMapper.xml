@@ -3,17 +3,34 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="together">
-
+ 
+ <!-- 
   <select id="selectAll" resultType="togetherVo">
-    select * from together
+    select * from together 
   </select>
-  
+-->
+ 
+  <select id="selectAll" resultType="togetherVo">
+    select t_num, t_title, t_intro, t_detail, t_open_date, t_thumbnail, t_place,
+    		t_date, t_size, t_attendee_cnt, t_comment, t_comment_step, t_fname, user_id, t_hit from 
+    	( select rownum r, t_num, t_title, t_intro, t_detail, t_open_date, t_thumbnail, t_place,
+    		t_date, t_size, t_attendee_cnt, t_comment, t_comment_step, t_fname, user_id, t_hit from (
+   	 		select * from together order by t_num desc )) 
+   	 		where r between #{start} and #{end}
+   	 		<if test="keyword != null and keyword = ''">
+   	 			and ${searchColumn} like '%'|| #{keyword} ||'%' 
+   	 		</if>
+   	 		<if test="sortColumn != null">
+   	 			order by ${sortColumn}
+   	 		</if>
+  </select>
+ 
   <select id="detail" resultType="togetherVo">
     select * from together where t_num=#{t_num}
   </select>
   
   <insert id="insertTogether">
-  	insert into together values(#{t_num},#{t_title},#{t_intro},#{t_detail},sysdate,#{t_img},#{t_place},#{t_date},10,5,'안녕','네',#{t_fname},'wonwoo',0)
+  	insert into together values(#{t_num},#{t_title},#{t_intro},#{t_detail},sysdate,#{t_thumbnail},#{t_place},#{t_date},10,5,'안녕','네',#{t_fname},'wonwoo',0)
   </insert>
   
   <update id="updateTogether">
@@ -23,4 +40,9 @@
   <delete id="deleteTogether">
   	delete from together where t_num =1
   </delete>
+  
+  <select id="totalRecord" resultType="java.lang.Integer">
+  	select count(*) from together
+  </select>
+  
 </mapper>

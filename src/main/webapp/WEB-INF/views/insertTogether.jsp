@@ -10,7 +10,7 @@
 	<h2>함께가요 등록</h2>
 	<form action="insertTogether.do" method="post">
 		글번호 : <input type="number" name="t_num"><br>
-		썸네일 : <input type="text" name="t_img"><br>
+		썸네일 : <input type="text" name="t_thumbnail"><br>
 		제목 : <input type="text" name="t_title"><br>
 		인트로 : <input type="text" name="t_intro"><br>	
 		장소 : <input type="text" name="t_place"><br>
