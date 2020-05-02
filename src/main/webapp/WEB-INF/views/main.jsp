@@ -10,7 +10,7 @@
 	li {list-style: none; }
 	body {font-family: 'Nanum Gothic', sans-serif; width: 1200px; margin: 0 auto; }
 	            
-	.logo {margin: 50px 0; font-size: 30px; text-align: center; font-family: 'Nanum Brush Script', cursive; }
+	.logo {margin: 50px 0; font-size: 30px; text-align: center; font-family: 'Nanum Gothic', sans-serif; }
 	            
 	.topMenu {width: 100%; margin-bottom: 20px; text-align: center; height: 40px; }
 	.topMenu:after {content: ""; display: block; clear: both; }
