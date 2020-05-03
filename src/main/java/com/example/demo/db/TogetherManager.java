@@ -1,6 +1,7 @@
 package com.example.demo.db;
 
 import java.io.Reader;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.io.Resources;
@@ -23,6 +24,13 @@ public class TogetherManager {
 			System.out.println(e.getMessage());
 		}
 	}
+	
+//	public static List<TogetherVo> listTogetherAll(HashMap map){
+//		SqlSession session = factory.openSession();
+//		List<TogetherVo> list = session.selectList("together.selectAll", map);
+//		session.close();
+//		return list;
+//	}
 	
 	public static List<TogetherVo> listTogetherAll(){
 		SqlSession session = factory.openSession();
@@ -54,5 +62,21 @@ public class TogetherManager {
 		session.close();
 		return re;
 	}
+	
+	public static int getTotalRecord() {
+		int cnt = 0;
+		SqlSession session = factory.openSession();
+		cnt = session.selectOne("together.totalRecord");
+		session.close();
+		return cnt;
+	}
+	
+	public static TogetherVo getTogether (int t_num) {
+        TogetherVo t = null;
+        SqlSession session = factory.openSession();
+        t = session.selectOne("together.detail", t_num);
+        session.close();
+        return t;
+    }
 	
 }

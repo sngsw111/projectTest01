@@ -9,26 +9,46 @@
 </head>
 <body>
 	<h2>함께가요</h2>
+	<!-- <form action="listTogether.do" method="post">
+		<select name="searchColumn">
+			<option value="t_hit">인기순</option>
+			<option value="t_title">제목순</option>
+			<option value="t_size">총모집인원순</option>
+			<option value="t_open_date">모임개설일순</option>
+			<option value="t_place">모임장소순</option>
+		</select>: <input type="text" value="keyword">
+		<input type="submit" value="검색">
+	</form> -->
+	<br>
 	<table border="1" width="80%">
 		<tr>
 			<td>썸네일</td>
-			<td>제목</td>
+			<td><a href="listTogether.do?sortColumn=t_title">제목</a></td>
 			<td>인트로</td>
 			<td>아이디</td>
-			<td>총참가인원</td>
+			<td><a href="listTogether.do?sortColumn=t_size">총모집인원</a></td>
 			<td>현재참가인원</td>
+			<td><a href="listTogether.do?sortColumn=t_open_date">모임개설일</a></td>
+			<td><a href="listTogether.do?sortColumn=t_place">모임장소</a></td>
+			<td><a href="listTogether.do?sortColumn=t_hit">조회수</a></td>
 		</tr>
 		<c:forEach var="c" items="${list}">
 			<tr>
-				<td>${c.t_img}</td>
-				<td>${c.t_title}</td>
+				<td>${c.t_thumbnail}</td>
+				<td><a href="detailTogether.do?t_num=${c.t_num }">${c.t_title}</td>
 				<td>${c.t_intro}</td>				
 				<td>${c.user_id}</td>
 				<td>${c.t_size}</td>
 				<td>${c.t_attendee_cnt}</td>	
+				<td>${c.t_open_date}</td>	
+				<td>${c.t_place}</td>
+				<td>${c.t_hit}</td>	
 			</tr>
 		</c:forEach>
-		
+		<hr>
+		<c:forEach var="i" begin="1" end="${totalPage}">
+			<a href="listTogether.do?pageNum=${i }">${i }</a>&nbsp;&nbsp;
+		</c:forEach>
 		
 	</table>
 </body>

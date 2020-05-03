@@ -15,7 +15,7 @@ public class TogetherVo {
 	private String t_intro;
 	private String t_detail;
 	private Date t_open_date;
-	private String t_img;
+	private String t_thumbnail;
 	private String t_place;
 	private String t_date;
 	private int t_size;
@@ -26,3 +26,21 @@ public class TogetherVo {
 	private String user_id;
 	private int t_hit;
 }
+
+/*
+t_num
+t_title
+t_intro
+t_detail
+t_open_date
+t_img
+t_place
+t_date
+t_size
+t_attendee_cnt
+t_comment
+t_comment_step
+t_fname
+user_id
+t_hit
+*/
