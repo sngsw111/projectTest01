@@ -34,7 +34,7 @@
 		</tr>
 		<c:forEach var="c" items="${list}">
 			<tr>
-				<td>${c.t_thumbnail}</td>
+				<td><img src="thumbnailupload/${c.t_thumbnail}" width="150" height="150"></td>
 				<td><a href="detailTogether.do?t_num=${c.t_num }">${c.t_title}</td>
 				<td>${c.t_intro}</td>				
 				<td>${c.user_id}</td>

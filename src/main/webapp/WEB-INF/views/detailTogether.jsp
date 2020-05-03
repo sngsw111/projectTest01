@@ -12,7 +12,7 @@
 	작성자 : ${t.user_id }<br>
 	장소 : ${t.t_place }<br>
 	모임일 : ${t.t_date }<br>
-	첨부파일 :${t.t_fname }<br>
+	첨부파일 :<img src="togetherupload/${t.t_fname }" width="50" height="50"><br>
 	글내용 :<br>
 	<textarea rows="10" cols="80" readonly="readonly">${t.t_detail }</textarea><br>
 	<a href="updateTogether.do?t_num=${t.t_num }">수정</a>

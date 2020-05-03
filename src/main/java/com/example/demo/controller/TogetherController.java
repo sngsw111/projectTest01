@@ -80,14 +80,27 @@ public class TogetherController {
 	
 	@RequestMapping(value="/insertTogether.do",method = RequestMethod.POST)
 	public ModelAndView insertTogetherSubmit(TogetherVo t, HttpSession session, HttpServletRequest request) {
+		
+		//첨부파일업로드
 		String path = request.getRealPath("togetherupload");
 		System.out.println("path : "+path);
+		
+		//썸네일파일업로드
+		String thumbnailpath = request.getRealPath("thumbnailupload");
+		System.out.println("thumbnailpath : "+ thumbnailpath);
+		
 		ModelAndView mav = new ModelAndView("redirect:/listTogether.do");	
 		String msg = "게시물 등록되었습니다.";
 		
+		//첨부파일업로드
 		MultipartFile uploadFile = t.getUploadFile();
 		String t_fname = uploadFile.getOriginalFilename();
 		t.setT_fname(t_fname);
+		
+		//썸네일파일업로드
+		MultipartFile thumbnailFile = t.getThumbnailFile();
+		String t_thumbnail = thumbnailFile.getOriginalFilename();
+		t.setT_thumbnail(t_thumbnail);
 		
 		int re = dao.insertTogether(t);
 		if(re <= 0) {
@@ -95,8 +108,11 @@ public class TogetherController {
 		}else {
 			try {
 				byte[]data = uploadFile.getBytes();
-				FileOutputStream fos = new FileOutputStream(path+"/"+t_fname);
-				fos.write(data);
+				byte[]data2 = thumbnailFile.getBytes();
+				FileOutputStream filefos = new FileOutputStream(path+"/"+t_fname);
+				FileOutputStream thumnailfos = new FileOutputStream(thumbnailpath+"/"+t_thumbnail);
+				filefos.write(data);
+				thumnailfos.write(data2);
 			}catch (Exception e) {
 				// TODO: handle exception
 				System.out.println("예외발생:"+ e.getMessage());

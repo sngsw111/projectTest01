@@ -29,6 +29,8 @@ public class TogetherVo {
 	private int t_hit;
 	
 	private MultipartFile uploadFile;
+	private MultipartFile thumbnailFile;
+	
 }
 
 /*
