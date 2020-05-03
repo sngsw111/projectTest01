@@ -55,9 +55,9 @@ public class TogetherManager {
 		return re;
 	}
 	
-	public static int deleteTogether(TogetherVo t) {
+	public static int deleteTogether(int t_num) {
 		SqlSession session = factory.openSession();
-		int re = session.insert("together.deleteTogether",t);
+		int re = session.insert("together.deleteTogether",t_num);
 		session.commit();
 		session.close();
 		return re;

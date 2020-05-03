@@ -16,7 +16,7 @@
 	글내용 :<br>
 	<textarea rows="10" cols="80" readonly="readonly">${t.t_detail }</textarea><br>
 	<a href="updateTogether.do?t_num=${t.t_num }">수정</a>
-	<a href="deleteTogether.do?t_num=${t.t_num } }">삭제</a>
+	<a href="deleteTogether.do?t_num=${t.t_num }">삭제</a>
 	<a href="insertTogetherComment.do?t_num=${t.t_num }">답글</a>
 </body>
 </html>

@@ -37,8 +37,8 @@ public class TogetherDao {
 		return TogetherManager.updateTogether(t);
 	}
 	
-	public int deleteTogether(TogetherVo t) {
-		return TogetherManager.deleteTogether(t);
+	public int deleteTogether(int t_num) {
+		return TogetherManager.deleteTogether(t_num);
 	}
 	
 	public int getTotalRecord() {

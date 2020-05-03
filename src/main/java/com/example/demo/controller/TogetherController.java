@@ -106,6 +106,17 @@ public class TogetherController {
 		return mav;
 	}
 	
+	@RequestMapping(value = "/deleteTogether.do")
+    public ModelAndView deleteTogether(int t_num) {
+        ModelAndView mav = new ModelAndView("redirect:/listTogether.do");
+        int re = dao.deleteTogether(t_num);
+        String str = "게시물 삭제에 실패하였습니다.";
+        if(re > 0) {
+        	str = "게시물 삭제에 성공하였습니다.";
+        }
+        return mav;
+    }
+	
 	
 	 @RequestMapping(value="/main")
 	    public String main() {

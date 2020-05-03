@@ -36,7 +36,7 @@
   </insert> -->
   
   <insert id="insertTogether">
-  	insert into together values(#{t_num},#{t_title},#{t_intro},#{t_detail},sysdate,#{t_thumbnail},#{t_place},#{t_date},10,5,'안녕','네',#{t_fname},'wonwoo',0)
+  	insert into together values(#{t_num},#{t_title},#{t_intro},#{t_detail},sysdate,#{t_thumbnail},#{t_place},#{t_date},#{t_size},5,'안녕','네',#{t_fname},'wonwoo',0)
   </insert>
   
   <update id="updateTogether">
