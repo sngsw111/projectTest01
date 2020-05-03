@@ -2,6 +2,8 @@ package com.example.demo.vo;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,6 +27,8 @@ public class TogetherVo {
 	private String t_fname;
 	private String user_id;
 	private int t_hit;
+	
+	private MultipartFile uploadFile;
 }
 
 /*

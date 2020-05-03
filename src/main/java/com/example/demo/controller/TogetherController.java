@@ -1,8 +1,10 @@
 package com.example.demo.controller;
 
 
+import java.io.FileOutputStream;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.dao.TogetherDao;
@@ -76,14 +79,30 @@ public class TogetherController {
 	}
 	
 	@RequestMapping(value="/insertTogether.do",method = RequestMethod.POST)
-	public ModelAndView insertTogetherSubmit(TogetherVo t) {
-		ModelAndView mav = new ModelAndView("redirect:/listTogether.do");
+	public ModelAndView insertTogetherSubmit(TogetherVo t, HttpSession session, HttpServletRequest request) {
+		String path = request.getRealPath("togetherupload");
+		System.out.println("path : "+path);
+		ModelAndView mav = new ModelAndView("redirect:/listTogether.do");	
 		String msg = "게시물 등록되었습니다.";
+		
+		MultipartFile uploadFile = t.getUploadFile();
+		String t_fname = uploadFile.getOriginalFilename();
+		t.setT_fname(t_fname);
 		
 		int re = dao.insertTogether(t);
 		if(re <= 0) {
 			msg = "게시물 등록에 실패하였습니다.";
+		}else {
+			try {
+				byte[]data = uploadFile.getBytes();
+				FileOutputStream fos = new FileOutputStream(path+"/"+t_fname);
+				fos.write(data);
+			}catch (Exception e) {
+				// TODO: handle exception
+				System.out.println("예외발생:"+ e.getMessage());
+			}
 		}
+		session.setAttribute("msg", msg);
 		return mav;
 	}
 	
