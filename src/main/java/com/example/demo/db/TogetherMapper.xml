@@ -40,7 +40,7 @@
   </insert>
   
   <update id="updateTogether">
-  	update together set t_thumbnail=#{t_thumbnail},t_title=#{t_title},t_intro=#{t_intro},t_place=#{t_place},t_date=#{t_date},t_detail=#{t_detail}, t_size=#{t_size},t_fname=#{t_fname} where t_num=#{t_num} 
+  	update together set t_thumbnail=#{t_thumbnail},t_title=#{t_title},t_intro=#{t_intro},t_detail=#{t_detail},t_place=#{t_place},t_date=#{t_date},t_size=#{t_size},t_fname=#{t_fname} where t_num=#{t_num} 
   </update>
   
   <delete id="deleteTogether">

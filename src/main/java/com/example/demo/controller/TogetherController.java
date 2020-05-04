@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.util.HashMap;
 
@@ -130,13 +131,40 @@ public class TogetherController {
     }
 	
 	@RequestMapping(value = "/updateTogether.do", method = RequestMethod.POST)
-	public ModelAndView updateTogetherSubmit(TogetherVo t) {
+	public ModelAndView updateTogetherSubmit(TogetherVo t, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("redirect:/listTogether.do");
-		String msg = "게시물 수정이 완료되었습니다.";
 		
+		//첨부파일 수정
+		String path = request.getRealPath("togetherupload");
+		System.out.println("path : "+ path);
+		String togetheroldFname = t.getT_fname();
+		MultipartFile uploadFile = t.getUploadFile();
+		String t_fname= null;
+		if(uploadFile != null) {
+			t_fname = uploadFile.getOriginalFilename();
+			if(t_fname != null && t_fname.equals("")) {
+				t.setT_fname(t_fname);
+				try {
+					byte []data = uploadFile.getBytes();
+					FileOutputStream filefos = new FileOutputStream(path+"/"+t_fname);
+					filefos.write(data);
+					filefos.close();
+				}catch (Exception e) {
+					// TODO: handle exception
+					System.out.println("예외발생 : "+e.getMessage());
+				}
+			}
+		}
 		int re = dao.updateTogether(t);
-		if(re <= 0) {
-			msg = "게시물 수정에 실패하였습니다.";
+		
+		//수정파일이 업로드 되고 기존 파일이 삭제된다.
+		if(re > 0
+				&& t_fname != null
+				&& !t_fname.equals("")
+				&& togetheroldFname != null
+				&& !togetheroldFname.equals("")) {
+			File file = new File(path+"/"+togetheroldFname);
+			file.delete();
 		}
 		return mav;
 	}
