@@ -28,7 +28,7 @@
 			<td>아이디</td>
 			<td><a href="listTogether.do?sortColumn=t_size">총모집인원</a></td>
 			<td>현재참가인원</td>
-			<td><a href="listTogether.do?sortColumn=t_open_date">모임개설일</a></td>
+			<td><a href="listTogether.do?sortColumn=t_date">모임일</a></td>
 			<td><a href="listTogether.do?sortColumn=t_place">모임장소</a></td>
 			<td><a href="listTogether.do?sortColumn=t_hit">조회수</a></td>
 		</tr>
@@ -40,7 +40,7 @@
 				<td>${c.user_id}</td>
 				<td>${c.t_size}</td>
 				<td>${c.t_attendee_cnt}</td>	
-				<td>${c.t_open_date}</td>	
+				<td>${c.t_date}</td>	
 				<td>${c.t_place}</td>
 				<td>${c.t_hit}</td>	
 			</tr>
