@@ -1,8 +1,11 @@
 package com.example.demo.controller;
 
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.dao.TogetherDao;
@@ -76,18 +80,48 @@ public class TogetherController {
 	}
 	
 	@RequestMapping(value="/insertTogether.do",method = RequestMethod.POST)
-	public ModelAndView insertTogetherSubmit(TogetherVo t) {
-		ModelAndView mav = new ModelAndView("redirect:/listTogether.do");
+	public ModelAndView insertTogetherSubmit(TogetherVo t, HttpSession session, HttpServletRequest request) {
+		
+		//첨부파일업로드
+		String path = request.getRealPath("togetherupload");
+		System.out.println("path : "+path);
+		
+		//썸네일파일업로드
+		String thumbnailpath = request.getRealPath("thumbnailupload");
+		System.out.println("thumbnailpath : "+ thumbnailpath);
+		
+		ModelAndView mav = new ModelAndView("redirect:/listTogether.do");	
 		String msg = "게시물 등록되었습니다.";
+		
+		//첨부파일업로드
+		MultipartFile uploadFile = t.getUploadFile();
+		String t_fname = uploadFile.getOriginalFilename();
+		t.setT_fname(t_fname);
+		
+		//썸네일파일업로드
+		MultipartFile thumbnailFile = t.getThumbnailFile();
+		String t_thumbnail = thumbnailFile.getOriginalFilename();
+		t.setT_thumbnail(t_thumbnail);
 		
 		int re = dao.insertTogether(t);
 		if(re <= 0) {
 			msg = "게시물 등록에 실패하였습니다.";
+		}else {
+			try {
+				byte[]data = uploadFile.getBytes();
+				byte[]data2 = thumbnailFile.getBytes();
+				FileOutputStream filefos = new FileOutputStream(path+"/"+t_fname);
+				FileOutputStream thumnailfos = new FileOutputStream(thumbnailpath+"/"+t_thumbnail);
+				filefos.write(data);
+				thumnailfos.write(data2);
+			}catch (Exception e) {
+				// TODO: handle exception
+				System.out.println("예외발생:"+ e.getMessage());
+			}
 		}
+		session.setAttribute("msg", msg);
 		return mav;
 	}
-	
-	//내가 해본다 내가 내가내가내가
 	
 	@RequestMapping(value = "/updateTogether.do", method = RequestMethod.GET)
     public ModelAndView updateTogetherForm(int t_num) {
@@ -97,16 +131,54 @@ public class TogetherController {
     }
 	
 	@RequestMapping(value = "/updateTogether.do", method = RequestMethod.POST)
-	public ModelAndView updateTogetherSubmit(TogetherVo t) {
+	public ModelAndView updateTogetherSubmit(TogetherVo t, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("redirect:/listTogether.do");
-		String msg = "게시물 수정이 완료되었습니다.";
 		
+		//첨부파일 수정
+		String path = request.getRealPath("togetherupload");
+		System.out.println("path : "+ path);
+		String togetheroldFname = t.getT_fname();
+		MultipartFile uploadFile = t.getUploadFile();
+		String t_fname= null;
+		if(uploadFile != null) {
+			t_fname = uploadFile.getOriginalFilename();
+			if(t_fname != null && t_fname.equals("")) {
+				t.setT_fname(t_fname);
+				try {
+					byte []data = uploadFile.getBytes();
+					FileOutputStream filefos = new FileOutputStream(path+"/"+t_fname);
+					filefos.write(data);
+					filefos.close();
+				}catch (Exception e) {
+					// TODO: handle exception
+					System.out.println("예외발생 : "+e.getMessage());
+				}
+			}
+		}
 		int re = dao.updateTogether(t);
-		if(re <= 0) {
-			msg = "게시물 수정에 실패하였습니다.";
+		
+		//수정파일이 업로드 되고 기존 파일이 삭제된다.
+		if(re > 0
+				&& t_fname != null
+				&& !t_fname.equals("")
+				&& togetheroldFname != null
+				&& !togetheroldFname.equals("")) {
+			File file = new File(path+"/"+togetheroldFname);
+			file.delete();
 		}
 		return mav;
 	}
+	
+	@RequestMapping(value = "/deleteTogether.do")
+    public ModelAndView deleteTogether(int t_num) {
+        ModelAndView mav = new ModelAndView("redirect:/listTogether.do");
+        int re = dao.deleteTogether(t_num);
+        String str = "게시물 삭제에 실패하였습니다.";
+        if(re > 0) {
+        	str = "게시물 삭제에 성공하였습니다.";
+        }
+        return mav;
+    }
 	
 	
 	 @RequestMapping(value="/main")
