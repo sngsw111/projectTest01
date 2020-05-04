@@ -142,7 +142,7 @@ public class TogetherController {
 		String t_fname= null;
 		if(uploadFile != null) {
 			t_fname = uploadFile.getOriginalFilename();
-			if(t_fname != null && t_fname.equals("")) {
+			if(t_fname != null && !t_fname.equals("")) {
 				t.setT_fname(t_fname);
 				try {
 					byte []data = uploadFile.getBytes();
@@ -158,7 +158,7 @@ public class TogetherController {
 		int re = dao.updateTogether(t);
 		
 		//수정파일이 업로드 되고 기존 파일이 삭제된다.
-		if(re > 0
+		if(re > 0 
 				&& t_fname != null
 				&& !t_fname.equals("")
 				&& togetheroldFname != null
