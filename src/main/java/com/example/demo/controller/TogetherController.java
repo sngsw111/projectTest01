@@ -28,44 +28,72 @@ public class TogetherController {
 		this.dao = dao;
 	}
 
+	public static int pageSize=5;
+	public static int totalRecord=0;
+	public static int totalPage=1;
+	
+	
+//	@RequestMapping("/listTogether.do")
+//	public ModelAndView listTogether() {
+//		ModelAndView mav = new ModelAndView();
+//		mav.addObject("list", dao.listTogetherAll());
+//		return mav;
+//	}
+	
 	@RequestMapping("/listTogether.do")
-	public ModelAndView listTogether() {
+	public ModelAndView listTogether(@RequestParam(value="pageNum", defaultValue="1") int pageNum) {
+		
+		int totalRecord = dao.getTotalRecord();
+		int totalPage = (int)Math.ceil(totalRecord / (double)pageSize);
+		
+		int start = (pageNum - 1) * pageSize + 1;
+		int end = start + pageSize - 1;
+		
+		HashMap map = new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("list", dao.listTogetherAll());
+		mav.addObject("list", dao.listTogetherAll(map));
+		mav.addObject("totalPage", totalPage);
 		return mav;
 	}
 
-//	@RequestMapping(value="/listTogether.do")
-//	public ModelAndView listTogether(String searchColumn, String sortColumn,
-//			String keyword, HttpSession session,
-//			@RequestParam(value="pageNum", defaultValue="1") int pageNum) {
-//		
-//		System.out.println("검색어: " + keyword);
-//		if(keyword==null) {
-//			keyword = (String)session.getAttribute("keyword");
-//			searchColumn = (String)session.getAttribute("name");
-//		}
-//		
-//		HashMap map = new HashMap<>();
-//		int start = (pageNum-1) * TogetherDao.pageSize + 1;
-//		int end = start + TogetherDao.pageSize - 1;
-//		map.put("keyword", keyword);
-//		map.put("searchColumn", searchColumn);
-//		map.put("sortColumn", sortColumn);
-//		map.put("start", start);
-//		map.put("end", end);
-//		System.out.println("map이 가진 값" + map);
-//		
-//		ModelAndView mav = new ModelAndView();
-//		mav.addObject("list",dao.listTogetherAll(map));
-//		System.out.println("전체 페이지 수: "+ TogetherDao.totalPage);
-//		mav.addObject("totalPage", TogetherDao.totalPage);
-//		
-//		session.setAttribute("keyword", keyword);
-//		session.setAttribute("searchColumn", searchColumn);
-//		return mav;
-//	}
 
+/*
+	 
+	@RequestMapping(value="/listTogether.do")
+	public ModelAndView listTogether(String searchColumn, String sortColumn,
+			String keyword, HttpSession session,
+			@RequestParam(value="pageNum", defaultValue="1") int pageNum) {
+		
+		System.out.println("검색어: " + keyword);
+		if(keyword==null) {
+			keyword = (String)session.getAttribute("keyword");
+			searchColumn = (String)session.getAttribute("name");
+		}
+		
+		HashMap map = new HashMap<>();
+		int start = (pageNum-1) * TogetherDao.pageSize + 1;
+		int end = start + TogetherDao.pageSize - 1;
+		map.put("keyword", keyword);
+		map.put("searchColumn", searchColumn);
+		map.put("sortColumn", sortColumn);
+		map.put("start", start);
+		map.put("end", end);
+		System.out.println("map이 가진 값" + map);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("list",dao.listTogetherAll(map));
+		System.out.println("전체 페이지 수: "+ TogetherDao.totalPage);
+		mav.addObject("totalPage", TogetherDao.totalPage);
+		
+		session.setAttribute("keyword", keyword);
+		session.setAttribute("searchColumn", searchColumn);
+		return mav;
+	}
+*/
+	
 	@RequestMapping("/detailTogether.do")
 	public ModelAndView detail(int t_num) {
 		ModelAndView mav = new ModelAndView();

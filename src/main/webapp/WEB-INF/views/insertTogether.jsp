@@ -14,7 +14,7 @@
 		제목 : <input type="text" name="t_title"><br>
 		인트로 : <input type="text" name="t_intro"><br>	
 		장소 : <input type="text" name="t_place"><br>
-		모임일 : <input type="text" name="t_date"><br>
+		모임일 : <input type="date" name="t_date"><br>
 		총인원 : <input type="number" name="t_size"><br>
 		상세내용 :<br>
 		<textarea rows="10" cols="80" name="t_detail"></textarea><br>
