@@ -5,8 +5,14 @@
 <mapper namespace="together">
  
 
+  <select id="totalRecord" resultType="java.lang.Integer">
+  	select count(*) from together
+  </select>
+  
   <select id="selectAll" resultType="togetherVo">
-    select * from together 
+    select t_thumbnail,t_title,t_intro,user_id,t_size,t_attendee_cnt,t_date,t_place,t_hit from (
+	select rownum n,t_thumbnail,t_title,t_intro,user_id,t_size,t_attendee_cnt,t_date,t_place,t_hit from together)
+	together where n between #{start} and #{end}
   </select>
 
 
@@ -47,9 +53,5 @@
   <delete id="deleteTogether">
   	delete from together where t_num =#{t_num}
   </delete>
-  
-  <select id="totalRecord" resultType="java.lang.Integer">
-  	select count(*) from together
-  </select>
   
 </mapper>

@@ -21,16 +21,17 @@ import com.example.demo.vo.TogetherVo;
 @Controller
 public class TogetherController {
 
+	
+	public static int pageSize=5;
+	public static int totalRecord=0;
+	public static int totalPage=1;
+	
 	@Autowired
 	private TogetherDao dao;
 
 	public void setDao(TogetherDao dao) {
 		this.dao = dao;
 	}
-
-	public static int pageSize=5;
-	public static int totalRecord=0;
-	public static int totalPage=1;
 	
 	
 //	@RequestMapping("/listTogether.do")
@@ -43,8 +44,8 @@ public class TogetherController {
 	@RequestMapping("/listTogether.do")
 	public ModelAndView listTogether(@RequestParam(value="pageNum", defaultValue="1") int pageNum) {
 		
-		int totalRecord = dao.getTotalRecord();
-		int totalPage = (int)Math.ceil(totalRecord / (double)pageSize);
+		totalRecord = dao.getTotalRecord();
+		totalPage = (int)Math.ceil(totalRecord / (double)pageSize);
 		
 		int start = (pageNum - 1) * pageSize + 1;
 		int end = start + pageSize - 1;

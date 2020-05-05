@@ -26,8 +26,9 @@ public class TogetherManager {
 	}
 	
 	public static List<TogetherVo> listTogetherAll(HashMap map){
+		List<TogetherVo> list = null;
 		SqlSession session = factory.openSession();
-		List<TogetherVo> list = session.selectList("together.selectAll", map);
+		list = session.selectList("together.selectAll", map);
 		session.close();
 		return list;
 	}
