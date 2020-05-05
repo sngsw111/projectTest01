@@ -9,6 +9,10 @@
 </head>
 <body>
 	<h2>함께가요</h2>
+	<hr>
+	<a href="insertTogether.do">모임 개설하기</a>
+	
+	<br>
 	<!-- <form action="listTogether.do" method="post">
 		<select name="searchColumn">
 			<option value="t_hit">인기순</option>
@@ -45,11 +49,10 @@
 				<td>${c.t_hit}</td>	
 			</tr>
 		</c:forEach>
+	</table>
 		<hr>
 		<c:forEach var="i" begin="1" end="${totalPage}">
 			<a href="listTogether.do?pageNum=${i }">${i }</a>&nbsp;&nbsp;
 		</c:forEach>
-		
-	</table>
 </body>
 </html>
