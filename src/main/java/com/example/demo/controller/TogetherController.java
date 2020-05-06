@@ -42,7 +42,13 @@ public class TogetherController {
 //	}
 	
 	@RequestMapping("/listTogether.do")
-	public ModelAndView listTogether(@RequestParam(value="pageNum", defaultValue="1") int pageNum) {
+	public ModelAndView listTogether(String searchColumn, String sortColumn,
+			String keyword, HttpSession session, @RequestParam(value="pageNum", defaultValue="1") int pageNum) {
+		
+		if(keyword == null) {
+			keyword = (String)session.getAttribute("keyword");
+			searchColumn = (String)session.getAttribute("searchColumn");
+		}
 		
 		totalRecord = dao.getTotalRecord();
 		totalPage = (int)Math.ceil(totalRecord / (double)pageSize);
@@ -51,12 +57,19 @@ public class TogetherController {
 		int end = start + pageSize - 1;
 		
 		HashMap map = new HashMap();
+		map.put("keyword", keyword);
+		map.put("search", searchColumn);
+		map.put("sortColumn", sortColumn);
 		map.put("start", start);
 		map.put("end", end);
+		System.out.println("map이 가진 값:" + map);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("list", dao.listTogetherAll(map));
 		mav.addObject("totalPage", totalPage);
+		
+		session.setAttribute("keyword", keyword);
+		session.setAttribute("searchColumn", searchColumn);
 		return mav;
 	}
 

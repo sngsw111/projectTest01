@@ -13,26 +13,24 @@
 #search{
 	width : 75%;
 	height : 15px;
+	display: inline;
 }
 </style>
 </head>
 <body>
 	<h2>함께가요</h2>
 	<hr>
-	<input type="text" value="keyword" id="search">
-	<input type="submit" value="검색"><br>
 	
 	<a href="insertTogether.do">모임 개설하기</a>
-	
-	
-	<form action="listTogether.do" method="post" id="column">
+	<br>
+	<form action="listTogether.do" method="post">
 		<select name="searchColumn">
-			<option value="t_hit">인기순</option>
-			<option value="t_title">제목순</option>
-			<option value="t_size">총모집인원순</option>
-			<option value="t_open_date">모임개설일순</option>
-			<option value="t_place">모임장소순</option>
-		</select>
+			<option value="t_title">제목</option>
+			<option value="user_id">작성자</option>
+			<option value="t_content">내용</option>
+			<option value="t_place">모임장소</option>
+		</select>:<input type="text" name="keyword">
+		<input type="submit" value="검색"><br>
 	</form>
 	<br><br>
 	<table border="1" width="80%">

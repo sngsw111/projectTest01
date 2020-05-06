@@ -6,7 +6,6 @@
 	<properties resource="com/example/demo/db/db.properties"/>
 	<typeAliases>
 		<typeAlias type="com.example.demo.vo.TogetherVo" alias="togetherVo"/>
-		<typeAlias type="com.example.demo.vo.MemberVo" alias="memberVo"/>
 	</typeAliases>
 	
   <environments default="development">
