@@ -15,6 +15,7 @@
 	height : 15px;
 	display: inline;
 }
+
 </style>
 </head>
 <body>
