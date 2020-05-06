@@ -58,7 +58,7 @@ public class TogetherController {
 		
 		HashMap map = new HashMap();
 		map.put("keyword", keyword);
-		map.put("search", searchColumn);
+		map.put("searchColumn", searchColumn);
 		map.put("sortColumn", sortColumn);
 		map.put("start", start);
 		map.put("end", end);
