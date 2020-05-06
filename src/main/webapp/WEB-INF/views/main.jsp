@@ -34,6 +34,35 @@
 	        $('.dept01').slideUp(300);
 	    }
 	});
+
+	$(function(){
+		$("#mypet").click(function(){
+				location.href="#";
+			})
+
+		$("#facility").click(function(){
+				location.href="#";
+			})
+
+		$("#board").click(function(){
+				location.href="#";
+			})
+
+		$("#together").click(function(){
+				location.href="/listTogether.do";
+			})
+
+		$("#customer_service").click(function(){
+				location.href="#";
+			})
+
+		$("#login").click(function(){
+				location.href="#";
+			})
+
+		
+
+	})
 </script>
 </head>
 <body>
@@ -42,32 +71,32 @@
 	</div>
 	<div class="topMenu">
 		<ul class="menu01">
-			<li><span>마이펫</span>
+			<li><span id="mypet">마이펫</span>
 				<ul class="dept01">
 					<li>소제목1</li>
 				</ul>
 			</li>
-			<li><span>숙소찾기</span>
+			<li><span id="facility">숙소찾기</span>
 				<ul class="dept01">
 					<li>소제목1</li>
 				</ul>
 			</li>
-			<li><span>자유게시판</span>
+			<li><span id="board">자유게시판</span>
 				<ul class="dept01">
 					<li>소제목1</li>
 				</ul>
 			</li>
-			<li><span>함께가요</span>
+			<li><span id="together">함께가요</span>
 				<ul class="dept01">
 					<li>소제목1</li>
 				</ul>
 			</li>
-			<li><span>고객지원</span>
+			<li><span id="customer_service">고객지원</span>
 				<ul class="dept01">
 					<li>소제목1</li>
 				</ul>
 			</li>
-			<li><span>로그인</span>
+			<li><span id="login">로그인</span>
 				<ul class="dept01"></ul>
 			</li>
 		</ul>
