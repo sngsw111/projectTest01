@@ -6,24 +6,35 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+#column{
+	display: inline;
+}
+#search{
+	width : 75%;
+	height : 15px;
+}
+</style>
 </head>
 <body>
 	<h2>함께가요</h2>
 	<hr>
+	<input type="text" value="keyword" id="search">
+	<input type="submit" value="검색"><br>
+	
 	<a href="insertTogether.do">모임 개설하기</a>
 	
-	<br>
-	<!-- <form action="listTogether.do" method="post">
+	
+	<form action="listTogether.do" method="post" id="column">
 		<select name="searchColumn">
 			<option value="t_hit">인기순</option>
 			<option value="t_title">제목순</option>
 			<option value="t_size">총모집인원순</option>
 			<option value="t_open_date">모임개설일순</option>
 			<option value="t_place">모임장소순</option>
-		</select>: <input type="text" value="keyword">
-		<input type="submit" value="검색">
-	</form> -->
-	<br>
+		</select>
+	</form>
+	<br><br>
 	<table border="1" width="80%">
 		<tr>
 			<td>썸네일</td>
@@ -37,6 +48,7 @@
 			<td><a href="listTogether.do?sortColumn=t_hit">조회수</a></td>
 		</tr>
 		<c:forEach var="c" items="${list}">
+		<!-- hi -->
 			<tr>
 				<td><img src="thumbnailupload/${c.t_thumbnail}" width="150" height="150"></td>
 				<td><a href="detailTogether.do?t_num=${c.t_num }">${c.t_title}</td>
