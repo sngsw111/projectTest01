@@ -5,8 +5,6 @@
 <mapper namespace="together">
  
 
-<!-- ㅀㅀ -->
-
   <select id="totalRecord" resultType="java.lang.Integer">
   	select count(*) from together
   </select>

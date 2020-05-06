@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.demo.dao.TogetherDao;
 import com.example.demo.vo.TogetherVo;
 
+
 @Controller
 public class TogetherController {
 
@@ -63,6 +64,8 @@ public class TogetherController {
 		map.put("start", start);
 		map.put("end", end);
 		System.out.println("map이 가진 값:" + map);
+		
+		
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("list", dao.listTogetherAll(map));
@@ -180,7 +183,7 @@ public class TogetherController {
 		System.out.println("path : " + path);
 		String togetheroldFname = t.getT_fname();
 		MultipartFile uploadFile = t.getUploadFile();
-		String t_fname = null;
+		String t_fname = togetheroldFname;
 		// 첨부파일 수정코드
 		if (uploadFile != null) {
 			t_fname = uploadFile.getOriginalFilename();
@@ -212,7 +215,7 @@ public class TogetherController {
 		System.out.println("thumbnailpath : " + thumbnailpath);
 		String thumbnailoldFname = t.getT_thumbnail();
 		MultipartFile thumbnailFile = t.getThumbnailFile();
-		String t_thumbnail = null;
+		String t_thumbnail = thumbnailoldFname;
 
 		if (thumbnailFile != null) {
 			t_thumbnail = thumbnailFile.getOriginalFilename();
@@ -228,6 +231,7 @@ public class TogetherController {
 				}
 			}
 		}
+		
 		int re1 = dao.updateTogether(t);
 		
 		if (re1 > 0 && t_thumbnail != null && !t_thumbnail.equals("") && thumbnailoldFname != null

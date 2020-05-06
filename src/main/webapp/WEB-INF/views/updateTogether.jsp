@@ -12,6 +12,7 @@
 		<input type="hidden" name="t_num" value="${t.t_num }">
 		<input type="hidden" name="t_fname" value="${t.t_fname }">
 		<%-- 글번호 : <input type="number" name="t_num" value="${t.t_num }"><br> --%>
+		<img src="thumbnailupload/${t.t_thumbnail }" width="50" height="50"><br>
 		썸네일 : <input type="file" name="thumbnailFile"><br>
 		제목 : <input type="text" name="t_title" value="${t.t_title }"><br>
 		인트로 : <input type="text" name="t_intro" value="${t.t_intro }"><br>	
