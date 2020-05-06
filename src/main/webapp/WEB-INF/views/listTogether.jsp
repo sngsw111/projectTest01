@@ -46,7 +46,6 @@
 			<td><a href="listTogether.do?sortColumn=t_hit">조회수</a></td>
 		</tr>
 		<c:forEach var="c" items="${list}">
-		<!-- hi -->
 			<tr>
 				<td><img src="thumbnailupload/${c.t_thumbnail}" width="150" height="150"></td>
 				<td><a href="detailTogether.do?t_num=${c.t_num }">${c.t_title}</td>
