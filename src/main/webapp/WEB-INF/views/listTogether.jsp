@@ -21,7 +21,7 @@
 <body>
 	<h2>함께가요</h2>
 	<hr>
-	
+	<!-- ㅇㄹㅇㄹㅇㄹ -->
 	<a href="insertTogether.do">모임 개설하기</a>
 	<br>
 	<form action="listTogether.do" method="post">
