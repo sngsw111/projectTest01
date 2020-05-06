@@ -10,7 +10,7 @@
   <select id="totalRecord" resultType="java.lang.Integer">
   	select count(*) from together
   </select>
-  <!-- hi -->
+
   <select id="selectAll" resultType="togetherVo">
     select
 	    t_num,
