@@ -49,7 +49,7 @@
 			})
 
 		$("#together").click(function(){
-				location.href="#";
+				location.href="/listTogether.do";
 			})
 
 		$("#customer_service").click(function(){
